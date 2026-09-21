@@ -32,6 +32,7 @@ REPL_OPTS=("${REPL_SECRET[@]}"
 section() { printf '\n== %s\n' "$*"; }
 pass()    { printf '  [OK]   %s\n' "$*"; }
 failt()   { printf '  [FAIL] %s\n' "$*"; FAILED=1; }
+# shellcheck disable=SC2001 # ${var//search/replace} kann keine mehrzeilige Prefix-Ersetzung
 indent()  { sed 's/^/         /' <<<"$1"; }
 finish() {
   if [ "$FAILED" -eq 0 ]; then printf '\nErgebnis: OK\n'; exit 0; fi
@@ -62,7 +63,7 @@ dexec() { docker exec "$(cname "$1")" "${@:2}"; }
 vol() { # vol <name> -> Volume anlegen, Namen ausgeben
   local v="$RUN_ID-$1"
   docker volume inspect "$v" >/dev/null 2>&1 \
-    || docker volume create -l "ldaptest=$RUN_ID" "$v" >/dev/null
+    || docker volume create --label "ldaptest=$RUN_ID" "$v" >/dev/null
   echo "$v"
 }
 

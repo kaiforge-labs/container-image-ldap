@@ -17,6 +17,7 @@ assert_contains "alice hat memberOf" "memberOf: cn=devs,ou=groups,$BASE" \
 
 section "refint"
 ldap_admin ldap ldapdelete "uid=alice,ou=people,$BASE"
+# shellcheck disable=SC2329 # wird indirekt per Namen ueber assert_eventually aufgerufen
 alice_not_member() {
   ! ldap_has ldap "cn=devs,ou=groups,$BASE" member "uid=alice"
 }
