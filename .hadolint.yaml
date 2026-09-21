@@ -1,0 +1,2 @@
+ignored:
+  - DL3008   # bewusst keine Versions-Pins, damit Rebuilds Sicherheitsupdates ziehen

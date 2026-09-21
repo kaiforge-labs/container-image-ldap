@@ -1,0 +1,6 @@
+dn: uid=carol,ou=people,dc=example,dc=org
+changetype: add
+objectClass: inetOrgPerson
+uid: carol
+cn: Carol
+sn: Example

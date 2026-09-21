@@ -1,0 +1,4 @@
+dn: uid=alice,ou=people,dc=example,dc=org
+changetype: modify
+replace: description
+description: geaendert

@@ -1,0 +1,27 @@
+services:
+  ldap:
+    build: ..
+    hostname: ldap.example.org
+    ports:
+      - "389:389"
+      - "636:636"
+    environment:
+      LDAP_DOMAIN: example.org
+    secrets:
+      - ldap_admin_password
+    volumes:
+      - ldap-config:/etc/ldap/slapd.d
+      - ldap-data:/var/lib/ldap
+      - ldap-certs:/etc/ldap/certs
+      - ldap-backup:/var/backups/ldap
+      - ./overrides:/etc/ldap/overrides.d:ro
+
+secrets:
+  ldap_admin_password:
+    file: ./secrets/ldap_admin_password
+
+volumes:
+  ldap-config:
+  ldap-data:
+  ldap-certs:
+  ldap-backup:

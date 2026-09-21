@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+DIR="${LDAP_BACKUP_DIR:-/var/backups/ldap}"
+KEEP="${LDAP_BACKUP_KEEP_DAYS:-14}"
+TS="$(date +%Y%m%d-%H%M%S)"
+TMP="$DIR/.$TS.tmp"
+
+umask 077
+mkdir -p "$TMP"
+runuser -u openldap -- slapcat -F /etc/ldap/slapd.d -n 0 | gzip > "$TMP/config.ldif.gz"
+runuser -u openldap -- slapcat -F /etc/ldap/slapd.d -n 1 | gzip > "$TMP/data.ldif.gz"
+mv "$TMP" "$DIR/$TS"
+
+find "$DIR" -mindepth 1 -maxdepth 1 -type d -mtime +"$KEEP" -exec rm -rf {} +
+echo "Backup erstellt: $DIR/$TS"
