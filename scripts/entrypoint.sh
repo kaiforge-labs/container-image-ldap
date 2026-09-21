@@ -232,6 +232,9 @@ olcTLSVerifyClient: ${LDAP_TLS_VERIFY_CLIENT}
 replace: olcTLSProtocolMin
 olcTLSProtocolMin: 3.3
 -
+replace: olcLocalSSF
+olcLocalSSF: 128
+-
 replace: olcDisallows
 olcDisallows: bind_anon
 
@@ -257,7 +260,7 @@ if [ "$LDAP_TLS_ENFORCE" = "true" ]; then
 dn: cn=config
 changetype: modify
 replace: olcSecurity
-olcSecurity: tls=1
+olcSecurity: ssf=128
 EOF
 else
   apply_ldif <<EOF || fail "olcSecurity konnte nicht entfernt werden"
