@@ -8,7 +8,7 @@ build:
 
 lint:
 	shellcheck -x scripts/* tests/*.sh tests/fixtures/*.sh tests/integration/*.sh
-	docker run --rm -i -v "$(CURDIR)/.hadolint.yaml:/.hadolint.yaml:ro" hadolint/hadolint < Dockerfile
+	docker run --rm -i hadolint/hadolint < Dockerfile
 
 certs:
 	tests/fixtures/gen-certs.sh

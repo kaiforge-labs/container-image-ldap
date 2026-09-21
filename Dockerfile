@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        slapd ldap-utils ca-certificates openssl && \
+        "slapd=2.6.*" "ldap-utils=2.6.*" "ca-certificates=2025*" "openssl=3.5.*" && \
     rm -rf /var/lib/apt/lists/* /etc/ldap/slapd.d/* /var/lib/ldap/* && \
     mkdir -p /etc/ldap/certs /etc/ldap/overrides.d /var/backups/ldap
 
