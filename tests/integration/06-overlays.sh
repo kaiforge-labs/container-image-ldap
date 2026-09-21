@@ -19,6 +19,7 @@ section "refint"
 ldap_admin ldap ldapdelete "uid=alice,ou=people,$BASE"
 # shellcheck disable=SC2329 # wird indirekt per Namen ueber assert_eventually aufgerufen
 alice_not_member() {
+  # shellcheck disable=SC2317 # wird indirekt per Namen ueber assert_eventually aufgerufen
   ! ldap_has ldap "cn=devs,ou=groups,$BASE" member "uid=alice"
 }
 assert_eventually "Geloeschter User aus Gruppe entfernt" 15 alice_not_member

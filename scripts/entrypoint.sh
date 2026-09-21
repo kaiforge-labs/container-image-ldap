@@ -58,6 +58,7 @@ case "$LDAP_REPLICATION_MODE" in
   provider)       IS_PROVIDER=true ;;
   consumer)       IS_CONSUMER=true ;;
   multi-provider) IS_PROVIDER=true; IS_CONSUMER=true
+    # shellcheck disable=SC2015 # reine Bedingungspruefungen ohne Nebenwirkungen, fail() beendet bei jedem Fehlerfall
     [[ "$LDAP_SERVER_ID" =~ ^[0-9]+$ ]] && [ "$LDAP_SERVER_ID" -ge 1 ] \
       && [ "$LDAP_SERVER_ID" -le 4095 ] || fail "LDAP_SERVER_ID (1-4095) fehlt" ;;
   *) fail "LDAP_REPLICATION_MODE muss none, provider, consumer oder multi-provider sein" ;;
