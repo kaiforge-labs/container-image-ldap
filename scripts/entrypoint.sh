@@ -387,8 +387,7 @@ delete: olcUpdateRef
 
 dn: ${DB_DN}
 changetype: modify
-replace: olcMultiProvider
-olcMultiProvider: FALSE
+delete: olcMultiProvider
 
 dn: ${DB_DN}
 changetype: modify
