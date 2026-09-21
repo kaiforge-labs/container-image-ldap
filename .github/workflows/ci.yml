@@ -50,13 +50,19 @@ jobs:
           name: image
           path: /tmp
       - run: docker load -i /tmp/image.tar
-      - name: Trivy
-        uses: aquasecurity/trivy-action@0.28.0   # aktuelle Version pruefen, per SHA pinnen
+      - name: SBOM (Syft)
+        uses: anchore/sbom-action@v0
         with:
-          image-ref: ${{ env.IMAGE }}
-          severity: CRITICAL,HIGH
-          ignore-unfixed: true
-          exit-code: "1"
+          image: ${{ env.IMAGE }}
+          format: spdx-json
+          output-file: sbom.spdx.json
+      - name: Vulnerability-Scan (Grype)
+        uses: anchore/scan-action@v7
+        with:
+          sbom: sbom.spdx.json
+          severity-cutoff: high
+          only-fixed: true
+          fail-build: true
 
   discover:
     runs-on: ubuntu-24.04

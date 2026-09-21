@@ -204,7 +204,7 @@ danach auf. Bei Fehlern werden die Container-Logs ausgegeben.
 
 ## CI/CD
 
-- **ci.yml** (Pull Requests): Lint, Build, Trivy-Scan, Integrationstests parallel pro Testdatei
+- **ci.yml** (Pull Requests): Lint, Build, SBOM/Vulnerability-Scan (Syft/Grype), Integrationstests parallel pro Testdatei
 - **release.yml** (main, Tags `v*`, wöchentlich): führt CI aus und veröffentlicht Multi-Arch-Images (amd64/arm64) mit SBOM und Provenance in der GitHub Container Registry
   - Tag `v1.2.3` → `1.2.3`, `1.2`, `1`, `latest`
   - `main` und wöchentlicher Rebuild → `edge` (enthält aktuelle Debian-Sicherheitsupdates)

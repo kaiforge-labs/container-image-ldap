@@ -42,6 +42,9 @@ dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 ### Changed
 
+- Vulnerability-Scan in `ci.yml` von Trivy auf Syft (SBOM) + Grype
+  umgestellt. Grund: `aquasecurity/trivy-action@0.28.0` ließ sich nicht
+  mehr auflösen (Tag existiert nicht mehr)
 - Veröffentlichte Images heißen in der GitHub Container Registry
   `ghcr.io/<organisation>/ldap` statt `ghcr.io/<organisation>/container-image-ldap`
   (`images:`/`subject-name:` in `release.yml` nutzen jetzt
