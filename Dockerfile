@@ -18,7 +18,6 @@ VOLUME ["/etc/ldap/slapd.d", "/var/lib/ldap", "/etc/ldap/certs", "/var/backups/l
 EXPOSE 389 636
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
-  CMD test -f /run/slapd/.ready && \
-      ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b cn=config -s base dn >/dev/null || exit 1
+  CMD ["/bin/sh", "-c", "test -f /run/slapd/.ready && ldapsearch -Q -Y EXTERNAL -H ldapi:/// -b cn=config -s base dn >/dev/null || exit 1"]
 
 ENTRYPOINT ["/entrypoint.sh"]
