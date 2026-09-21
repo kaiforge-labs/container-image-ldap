@@ -42,6 +42,10 @@ dieses Projekt folgt [Semantic Versioning](https://semver.org/lang/de/).
 
 ### Changed
 
+- Veröffentlichte Images heißen in der GitHub Container Registry
+  `ghcr.io/<organisation>/ldap` statt `ghcr.io/<organisation>/container-image-ldap`
+  (`images:`/`subject-name:` in `release.yml` nutzen jetzt
+  `github.repository_owner` statt `github.repository`)
 - Paketversionen im Dockerfile werden mit Major.Minor-Präfix und
   `*`-Suffix gepinnt (z. B. `slapd=2.6.*`) statt DL3008 zu ignorieren —
   Sicherheitsupdates innerhalb der gepinnten Version werden bei Rebuilds
