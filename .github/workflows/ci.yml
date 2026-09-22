@@ -19,7 +19,7 @@ jobs:
       - name: ShellCheck
         run: shellcheck -x scripts/* tests/*.sh tests/fixtures/*.sh tests/integration/*.sh
       - name: Hadolint
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.5.0
         with:
           dockerfile: Dockerfile
 
